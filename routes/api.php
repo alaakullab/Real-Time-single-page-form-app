@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,5 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/question', 'QuestionController@index');
 
 Route::apiResource('question', QuestionController::class);
+Route::apiResource('category', CategoryController::class);
 
