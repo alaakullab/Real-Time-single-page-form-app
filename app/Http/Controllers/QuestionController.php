@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Http\Resources\QuestionResource;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
+use Psy\CodeCleaner\ReturnTypePass;
 
 class QuestionController extends Controller
 {
@@ -12,9 +15,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        return QuestionResource::collection(Question::latest()->get());
     }
 
     /**
@@ -35,7 +39,9 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // auth()->user()->question()->create($request->all());
+       Question::create($request->all());
+       return Response('Created', 201);
     }
 
     /**
@@ -46,7 +52,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        return new QuestionResource($question);
     }
 
     /**
@@ -80,6 +86,7 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return response(null, 204);
     }
 }
