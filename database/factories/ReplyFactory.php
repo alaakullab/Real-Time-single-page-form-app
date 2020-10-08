@@ -22,8 +22,15 @@ class ReplyFactory extends Factory
      */
     public function definition()
     {
+        $word = $this->faker->word;
         return [
-            //
+            'body' => $word,
+            'question_id' => function (){
+                return \App\Models\Question::all()->random();
+            },
+            'user_id' => function () {
+                return \App\Models\User::all()->random();
+            },
         ];
     }
 }

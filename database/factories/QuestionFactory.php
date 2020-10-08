@@ -20,10 +20,20 @@ class QuestionFactory extends Factory
      *
      * @return array
      */
+
     public function definition()
     {
+        $title = $this->faker->sentence;
         return [
-            //
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'body' => $this->faker->text,
+            'category_id' => function () {
+                return \App\Models\Category::all()->random();
+            },
+            'user_id' => function () {
+                return \App\Models\User::all()->random();
+            },
         ];
     }
 }
