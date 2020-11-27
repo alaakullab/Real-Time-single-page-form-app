@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReplyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('question', QuestionController::class);
 Route::apiResource('category', CategoryController::class);
+Route::apiResource('question/{question}/reply',ReplyController::class);
 
