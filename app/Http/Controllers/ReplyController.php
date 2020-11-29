@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReplyResource;
 use App\Models\Question;
 use App\Models\Reply;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class ReplyController extends Controller
      */
     public function index(Question $question)
     {
-        return $question->replies;
+        return ReplyResource::collection($question->replies);
     }
 
     /**
@@ -27,7 +28,7 @@ class ReplyController extends Controller
     public function store(Question $question, Request $request)
     {
          $reply = $question->replies()->create($request->all());
-         return response(['reply'=> $reply], 201);
+         return response(['reply'=> new ReplyResource($reply)], 201);
     }
 
     /**
@@ -38,7 +39,7 @@ class ReplyController extends Controller
      */
     public function show(Question $question, Reply $reply)
     {
-        return $reply;
+        return new ReplyResource($reply);
     }
 
     /**
