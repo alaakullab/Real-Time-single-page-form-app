@@ -39,6 +39,7 @@ Route::group([
 ], function ($router) {
 
     Route::post('login', [AuthController::CLass, 'login']);
+    Route::post('signup', [AuthController::CLass, 'signup']);
     Route::post('logout', [AuthController::CLass, 'logout']);
     Route::post('refresh', [AuthController::CLass, 'refresh']);
     Route::post('me', [AuthController::CLass, 'me']);
